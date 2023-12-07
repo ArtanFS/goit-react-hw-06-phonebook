@@ -1,0 +1,20 @@
+.contact_form {
+  padding: 20px 0;
+}
+
+.contact_form button {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.contact_form_item {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  width: 200px;
+  margin-bottom: 12px;
+}
+
+.contact_form_item input {
+  font-size: 16px;
+}

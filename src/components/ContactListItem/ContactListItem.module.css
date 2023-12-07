@@ -1,0 +1,13 @@
+.list_item {
+  margin-bottom: 8px;
+}
+
+.list_item_wrapper {
+  display: flex;
+  gap: 12px;
+}
+
+.list_item_wrapper button {
+  font-size: 14px;
+  cursor: pointer;
+}

@@ -1,0 +1,11 @@
+.wrapper {
+  padding: 20px 0;
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  width: 200px;
+}
+
+.wrapper input {
+  font-size: 16px;
+}
