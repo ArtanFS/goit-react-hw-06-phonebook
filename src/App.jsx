@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
-import ContactForm from './ContactForm';
-import ContactList from './ContactList';
-import Filter from './Filter';
+import ContactForm from './components/ContactForm';
+import ContactList from './components/ContactList';
+import Filter from './components/Filter';
 import css from './Container.module.css';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 const App = () => {
   const [contacts, setContacts] = useState(
@@ -46,13 +48,18 @@ const App = () => {
   };
 
   return (
-    <div className={css.container}>
-      <h1>Phonebook</h1>
-      <ContactForm addContact={addContact} />
-      <h2>Contacts</h2>
-      <Filter filter={filter} onChange={handleFilter} />
-      <ContactList contacts={filterContacts()} deleteContact={deleteContact} />
-    </div>
+    <Provider store={store}>
+      <div className={css.container}>
+        <h1>Phonebook</h1>
+        <ContactForm addContact={addContact} />
+        <h2>Contacts</h2>
+        <Filter filter={filter} onChange={handleFilter} />
+        <ContactList
+          contacts={filterContacts()}
+          deleteContact={deleteContact}
+        />
+      </div>
+    </Provider>
   );
 };
 
