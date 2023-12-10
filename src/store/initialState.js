@@ -1,4 +1,4 @@
 export const initialState = {
-  contacts: [],
+  contacts: JSON.parse(window.localStorage.getItem('contacts')) ?? [],
   filter: '',
 };

@@ -1,29 +1,28 @@
 import { useState } from 'react';
 import css from './ContactForm.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContactAction } from 'store/actions';
 
-const ContactForm = ({ addContact }) => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+const ContactForm = () => {
+  const [value, setValue] = useState({ name: '', number: '' });
+  const contacts = useSelector(state => state.contacts);
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
-    addContact({ name, number });
-    setName('');
-    setNumber('');
+    const isDuplicate = contacts.some(
+      ({ name }) => value.name.toLowerCase() === name.toLowerCase()
+    );
+    if (isDuplicate) {
+      alert(`${value.name} is already in contacts.`);
+      return;
+    }
+    dispatch(addContactAction(value));
+    setValue({ name: '', number: '' });
   };
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
-      default:
-        return;
-    }
+  const handleChange = ({ target: { value, name } }) => {
+    setValue(prev => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -34,7 +33,7 @@ const ContactForm = ({ addContact }) => {
           name="name"
           type="text"
           id="inputName"
-          value={name}
+          value={value.name}
           onChange={handleChange}
           required
           pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -46,7 +45,7 @@ const ContactForm = ({ addContact }) => {
           name="number"
           type="tel"
           id="inputNumber"
-          value={number}
+          value={value.number}
           onChange={handleChange}
           required
           pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"

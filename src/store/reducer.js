@@ -1,5 +1,5 @@
 import { initialState } from './initialState';
-import { ADD_CONTACT, DELETE_CONTACT } from './types';
+import { ADD_CONTACT, DELETE_CONTACT, SET_FILTER } from './types';
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -10,6 +10,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         contacts: state.contacts.filter(el => el.id !== action.payload),
+      };
+
+    case SET_FILTER:
+      return {
+        ...state,
+        filter: action.payload,
       };
 
     default:
