@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { setFilterAction } from 'store/filter/filterSlice';
 import css from './Filter.module.css';
-import { setFiltertAction } from 'store/actions';
 
-const Filter = ({ onChange }) => {
-  const filter = useSelector(state => state.filter);
+const Filter = () => {
+  const { filter } = useSelector(state => state.filter);
   const dispatch = useDispatch();
 
   const handleFilter = e => {
-    dispatch(setFiltertAction(e.target.value));
+    dispatch(setFilterAction(e.target.value));
   };
 
   return (

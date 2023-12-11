@@ -1,6 +1,6 @@
-import { deleteContactAction } from 'store/actions';
-import css from './ContactListItem.module.css';
+import { deleteContactAction } from 'store/contacts/contactSlice';
 import { useDispatch } from 'react-redux';
+import css from './ContactListItem.module.css';
 
 const ContactListItem = ({ contact }) => {
   const dispatch = useDispatch();

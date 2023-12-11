@@ -3,8 +3,8 @@ import ContactListItem from '../ContactListItem';
 import css from './ContactList.module.css';
 
 const ContactList = () => {
-  const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
+  const { contacts } = useSelector(state => state.contacts);
+  const { filter } = useSelector(state => state.filter);
 
   const filterContacts = () => {
     return contacts.filter(contact =>
